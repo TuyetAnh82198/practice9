@@ -30,3 +30,22 @@ Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N)
 
 Weather Observation Station 20
 A median is defined as a number separating the higher half of a data set from the lower half. Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to 4 decimal places.
+
+Population Census
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+African Cities
+Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+Average Population of Each Continent
+Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+The Report
+Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order.
+Write a query to help Eve.
+Note
+Print "NULL"  as the name if the grade is less than 8.
+
