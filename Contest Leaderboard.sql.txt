@@ -1,0 +1,16 @@
+SELECT H.hacker_id, H.name, TBL1.TOTAL_SCORE
+FROM
+(
+SELECT hacker_id, SUM(MAX_SCORE) AS TOTAL_SCORE
+FROM
+(
+SELECT hacker_id, MAX(score) MAX_SCORE
+FROM Submissions
+WHERE score <> 0
+GROUP BY hacker_id, challenge_id
+) TBL
+GROUP BY hacker_id
+) TBL1
+JOIN Hackers H
+ON H.hacker_id = TBL1.hacker_id
+ORDER BY TBL1.TOTAL_SCORE DESC, hacker_id

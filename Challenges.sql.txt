@@ -1,0 +1,26 @@
+SELECT H.hacker_id, H.name, COUNT(C.challenge_id) AS CHALLENGES
+FROM Hackers H
+JOIN Challenges C
+ON H.hacker_id = C.hacker_id
+GROUP BY H.hacker_id, H.name
+HAVING COUNT(C.challenge_id) NOT IN
+(
+SELECT TBL1.CHALLENGES1 FROM
+(
+SELECT C1.hacker_id, H1.name, COUNT(C1.challenge_id) AS CHALLENGES1
+FROM Hackers H1
+JOIN Challenges C1
+ON H1.hacker_id = C1.hacker_id
+GROUP BY C1.hacker_id, H1.name
+) TBL1 
+WHERE TBL1.CHALLENGES1 <>
+(
+SELECT TOP 1 COUNT(challenge_id)
+FROM Challenges
+GROUP BY hacker_id
+ORDER BY 1 DESC
+)
+GROUP BY TBL1.CHALLENGES1
+HAVING COUNT(TBL1.CHALLENGES1) >1
+)
+ORDER BY CHALLENGES DESC, H.hacker_id

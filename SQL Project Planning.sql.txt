@@ -1,0 +1,23 @@
+WITH START_TBL AS
+(
+SELECT Start_Date
+FROM Projects
+WHERE Start_Date NOT IN
+(
+SELECT End_Date
+FROM Projects
+)
+), END_TBL AS
+(
+SELECT End_Date
+FROM Projects
+WHERE End_Date NOT IN
+(SELECT Start_Date
+FROM Projects
+)
+)
+SELECT Start_Date, MIN(End_Date)
+FROM START_TBL CROSS JOIN END_TBL
+WHERE End_Date > Start_Date
+GROUP BY Start_Date
+ORDER BY DATEDIFF(DAY, Start_Date, MIN(End_Date)), Start_Date 
